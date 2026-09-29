@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,18 @@ public class TreeProblems {
    If the root is null, do nothing.
    */
   public static <T> void postOrder(Node<T> root) {
+    if(root == null){
+      return;
+    }
+
+    for(Node<T> node : root.children){
+      postOrder(node);
+    }
+
+    System.out.println(root.value);
+
   }
+
 
   /*
    postOrder (Node Version)
@@ -55,6 +67,15 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if(tree == null || root == null){
+      return;
+    }
+
+      for(T child : tree.getOrDefault(root, List.of())){
+    postOrder(tree, child);
+    }
+    System.out.println(root);
+    
   }
 
   /*
